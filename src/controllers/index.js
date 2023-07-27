@@ -11,7 +11,7 @@ module.exports = {
             if (!prioridade) return res.status(400).json('insira a prioridade');
 
 
-            const createTarefa = await prisma.tarefas.create({data: {tarefa, prioridade}});
+            const createTarefa = await prisma.tarefas.create({data: { tarefa, prioridade}});
             return res.status(201).json('Tarefa colocada!')
 
 
