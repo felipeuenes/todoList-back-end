@@ -61,16 +61,19 @@ module.exports = {
   },
 
   async delete (req, res) {
-    const { id } = req.params
-
-    if (id) {
-      await prisma.tarefas.delete({
-        where: {idtarefas: Number(id)}
-      })
-
-      return res.json({message: `Tarefa ${id} foi deletada com sucesso`})
-    }
-
-    return res.json({ message: "informe um id valido" })
+    try {
+      const { id } = req.params
+  
+      if (id) {
+        await prisma.tarefas.delete({
+          where: {idtarefas: Number(id)}
+        })
+  
+        return res.json({message: `Tarefa ${id} foi deletada com sucesso`})
+      }
+    } catch (error) {
+      console.log("erro: ", error)
+      return res.json({ message: "informe um id valido" })
+    }    
   }
 }
