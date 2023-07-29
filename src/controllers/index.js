@@ -6,6 +6,7 @@ module.exports = {
       const { tarefa, prioridade } = req.body;
       if (!tarefa) return res.status(400).json('insira uma tarefa!');        
       if (!prioridade) return res.status(400).json('insira a prioridade');
+      
 
       await prisma.tarefas.create({data: { tarefa, prioridade}});
       
