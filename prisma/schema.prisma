@@ -8,7 +8,13 @@ datasource db {
 }
 
 model tarefas {
-  idtarefas  Int    @id @default(autoincrement()) @db.UnsignedSmallInt
+  idtarefas  Int    @id @default(autoincrement())
   tarefa     String @db.VarChar(45)
   prioridade String @db.VarChar(45)
+}
+
+model concluidos {
+  idconcluidos Int    @id @default(autoincrement())
+  tarefa       String @db.VarChar(45)
+  prioridade   String @db.VarChar(45)
 }
