@@ -12,16 +12,22 @@ module.exports = {
           const listTask = await prisma.tarefas.findUnique({
             where: { idtarefas: Number(id) }
           });
+
+          const arrayTarefas = Object.entries(listTask)
     
-         for (const dado of dadosOrigem) {
+          console.log(arrayTarefas);
+         for (const dado of arrayTarefas) {
       await prisma.concluidos.create({
         data: {
-          tarefa, prioridade
+          tarefa: dado[1],
+          prioridade: dado[1] 
         }
       })
     }
       
-      console.log('Dados copiados com sucesso!');
+      // console.log('Dados copiados com sucesso!');
+      return res.status(201).json({ message: "Dados copiados com sucesso!" })
+      
   } catch (error) {
     console.error('Erro ao copiar dados:', error);
   } finally {
