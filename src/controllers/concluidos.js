@@ -13,19 +13,31 @@ module.exports = {
             where: { idtarefas: Number(id) }
           });
 
-          const arrayTarefas = Object.entries(listTask)
+    //       const arrayTarefas = Object.entries(listTask)
     
-          console.log(arrayTarefas);
-         for (const dado of arrayTarefas) {
-      await prisma.concluidos.create({
-        data: {
-          tarefa: dado[1],
-          prioridade: dado[1] 
-        }
-      })
-    }
+    //       console.log(arrayTarefas);
+    //      for (const dado of arrayTarefas) {
+    //   await prisma.concluidos.create({
+    //     data: {
+    //       tarefa: dado[0],
+    //       prioridade: dado[0] 
+    //     }
+    //   })
+    // }
       
       // console.log('Dados copiados com sucesso!');
+
+      if (listTask) {
+        await prisma.concluidos.create({
+          data: {
+            tarefa: listTask.tarefa,
+            prioridade: listTask.prioridade,
+          }
+        });
+      } else {
+        console.error('Tarefa não encontrada.');
+      }
+
       return res.status(201).json({ message: "Dados copiados com sucesso!" })
       
   } catch (error) {
