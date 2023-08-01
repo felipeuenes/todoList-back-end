@@ -13,13 +13,20 @@ module.exports = {
             where: { idtarefas: Number(id) }
           });
     
-        //   return res.json(listTask)
-
-          await prisma.concluidos.create({ data:{ tarefa, prioridade}});
-          
-          return res.status(201).json({ message: "Tarefa concluida com sucesso" })
-        } catch (error) {
-          console.log(error);
+         for (const dado of dadosOrigem) {
+      await prisma.concluidos.create({
+        data: {
+          tarefa, prioridade
         }
-      },
-}
+      })
+    }
+      
+      console.log('Dados copiados com sucesso!');
+  } catch (error) {
+    console.error('Erro ao copiar dados:', error);
+  } finally {
+    await prisma.$disconnect();
+  }
+
+    }
+  }
