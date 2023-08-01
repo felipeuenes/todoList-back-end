@@ -12,5 +12,6 @@ router.delete('/tarefa/:id', controllers.delete)
 // outra tabela:
 
 router.post('/concluir/:id', controllersConcluidos.create)
+router.get('/concluidos', controllersConcluidos.read)
 
 module.exports = router;

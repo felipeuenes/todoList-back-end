@@ -46,5 +46,24 @@ module.exports = {
     await prisma.$disconnect();
   }
 
+    },
+    async read (req, res) {
+      const { id } = req.query
+  
+      if (id) {
+        try {
+            const list = await prisma.concluidos.findUnique({
+              where: { idconcluidos: Number(id) }
+            })
+      
+            return res.json(list)
+        } catch (err) {
+          console.log('Deu erro:', err)
+        }
+      }
+  
+      const list = await prisma.concluidos.findMany()
+      return res.json(list)
     }
+
   }
