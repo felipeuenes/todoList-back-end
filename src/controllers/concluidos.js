@@ -27,6 +27,7 @@ module.exports = {
       
       // console.log('Dados copiados com sucesso!');
 
+
       if (listTask) {
         await prisma.concluidos.create({
           data: {
@@ -64,6 +65,23 @@ module.exports = {
   
       const list = await prisma.concluidos.findMany()
       return res.json(list)
+    },
+
+    async delete (req, res) {
+      try {
+        const { id } = req.params
+    
+        if (id) {
+          await prisma.concluidos.delete({
+            where: {idconcluidos: Number(id)}
+          })
+    
+          return res.json({message: `Tarefa ${id} foi deletada com sucesso`})
+        }
+      } catch (error) {
+        console.log("erro: ", error)
+        return res.json({ message: "informe um id valido" })
+      }    
     }
 
   }
