@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mysql://api_todolist_r1j5_user:bLTAgo4jKukdmIXTV8qfYEHBJE67AGIH@dpg-cj58118eba7s73ecml00-a/api_todolist_r1j5"
   url      = env("DATABASE_URL")
 }
 
